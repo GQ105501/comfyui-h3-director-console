@@ -2,7 +2,7 @@
 
 一个面向多镜头制作的 ComfyUI 导演台。它用镜头卡片管理提示词和参考素材，按排序逐段提交 MiniMax H3，并在卡片内显示最新视频和提供单镜头重抽。
 
-完整的模型清单、节点依赖、目录位置、迁移方法和故障排查见 [使用与部署说明](docs/使用与部署说明.md)。
+模型清单、节点依赖、操作方法、数据位置和故障排查见 [完整使用说明](docs/使用说明.md)。
 
 ## 功能
 
@@ -24,17 +24,18 @@
 视频预览 ← output 扫描 ← 裁掉保护前缀 ← Masked H3 采样链
 ```
 
-## 安装
+## 安装插件
 
-从仓库根目录运行：
+将本仓库完整放入 ComfyUI 的 `custom_nodes` 目录：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\tools\install_h3_director_console.ps1
+cd <ComfyUI目录>\custom_nodes
+git clone https://github.com/GQ105501/comfyui-h3-director-console.git
 ```
 
-脚本会在当前 ComfyUI 的 `custom_nodes` 下创建指向本目录的 Junction。重启 ComfyUI 后，在右侧边栏打开“MiniMax H3 导演台”，也可加载 `workflow_templates/H3-Director-Console-review.json`。
+也可以下载仓库 ZIP，解压并将目录改名为 `comfyui-h3-director-console`。最终结构应为 `ComfyUI\custom_nodes\comfyui-h3-director-console\__init__.py`，不要多嵌套一层仓库目录。
 
-支持 ComfyUI `0.33.4+`；推荐 `0.34.0+`。从旧版本升级导演台后必须重启 ComfyUI，使内置节点完成注册。
+安装完成后重启 ComfyUI，在右侧边栏打开“MiniMax H3 导演台”；也可加载 `workflow_templates/H3-Director-Console-review.json` 检查节点注册。插件支持 ComfyUI `0.33.4+`，推荐 `0.34.0+`。模型和外部节点不会随插件仓库提供，请按[完整使用说明](docs/使用说明.md)准备。
 
 ## 片段关系与连续性
 
